@@ -5,6 +5,7 @@
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "EVENT_HUB_CONNECTION": "Endpoint=sb://azure-ascendants.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=sAt69fGvqjzAKKNEvJBQPlKWbg4cHQXQS+AEhD9FeXU=",
-    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=vipernest;AccountKey=abNSYyuD+ioegb4JhOu7FMj1kMpsDdDgDUtTRbG9cFAUX5BucnoiqDIQaTnT8W15g/pwdf1NzZbB+AStm/xiSg==;EndpointSuffix=core.windows.net"
+    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=vipernest;AccountKey=abNSYyuD+ioegb4JhOu7FMj1kMpsDdDgDUtTRbG9cFAUX5BucnoiqDIQaTnT8W15g/pwdf1NzZbB+AStm/xiSg==;EndpointSuffix=core.windows.net",
+    "TABLE_ACCOUNT_KEY":  "abNSYyuD+ioegb4JhOu7FMj1kMpsDdDgDUtTRbG9cFAUX5BucnoiqDIQaTnT8W15g/pwdf1NzZbB+AStm/xiSg=="
   }
 }

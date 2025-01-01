@@ -15,7 +15,7 @@ npm list -g azurite
 
 azurite
 
-For PixProcessor's dependencies, run inside PixProcessor's root directory:
+For installing PixProcessor's dependencies, run inside PixProcessor's root directory:
 
 npm install
 

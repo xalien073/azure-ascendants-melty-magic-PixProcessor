@@ -3,16 +3,27 @@
 const { app } = require("@azure/functions");
 const { EventHubConsumerClient } = require("@azure/event-hubs");
 const { BlobServiceClient } = require("@azure/storage-blob");
+const { TableClient, AzureNamedKeyCredential } = require("@azure/data-tables");
 const sharp = require("sharp");
 
 // Azure Event Hub and Storage connection details
-
 const AZURE_STORAGE_CONNECTION_STRING = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const CONTAINER_NAME = "azure-ascendants-melty-magic-thumbnails";
+const TABLE_ACCOUNT_NAME = "vipernest";
+const TABLE_ACCOUNT_KEY = process.env.TABLE_ACCOUNT_KEY; // Only the Account Key
+const TABLE_NAME = "azureAscendantsMeltyMagicInventory";
+
+// Initialize Azure Table Storage Client
+const credential = new AzureNamedKeyCredential(TABLE_ACCOUNT_NAME, TABLE_ACCOUNT_KEY);
+const tableClient = new TableClient(
+  `https://${TABLE_ACCOUNT_NAME}.table.core.windows.net`,
+  TABLE_NAME,
+  credential
+);
 
 // Function to process each event message
 async function processEvent(eventData, context) {
-  const { name, brand, blobUrl } = eventData;
+  const { name, brand, price, quantityAvailable, blobUrl } = eventData;
 
   if (!blobUrl) {
     context.log("No blob URL provided");
@@ -50,7 +61,22 @@ async function processEvent(eventData, context) {
       blobHTTPHeaders: { blobContentType: "image/jpeg" },
     });
 
-    context.log(`Thumbnail created and uploaded: ${blockBlobClient.url}`);
+    const thumbnailUrl = blockBlobClient.url;
+
+    // Save metadata to Azure Table Storage
+    const entity = {
+      partitionKey: brand,
+      rowKey: name,
+      name,
+      brand,
+      price: parseFloat(price),
+      quantityAvailable: parseInt(quantityAvailable, 10),
+      imageUrl: thumbnailUrl, // Add the thumbnail URL to the metadata,
+    };
+
+    await tableClient.createEntity(entity);
+    context.log("Product data saved successfully!");
+    context.log(`Thumbnail created and uploaded: ${thumbnailUrl}`);
   } catch (error) {
     context.log(`Error processing image: ${error.message}`);
   }
@@ -62,9 +88,7 @@ app.eventHub("PixProcessor", {
   eventHubName: "chocolates",
   cardinality: "many", // Batch of messages
   handler: async (messages, context) => {
-    context.log(
-      `Event hub function processed ${messages.length} messages`
-    );
+    context.log(`Event hub function processed ${messages.length} messages`);
 
     for (const message of messages) {
       context.log("Processing message:", message);

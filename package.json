@@ -10,6 +10,7 @@
   "dependencies": {
     "@azure/data-tables": "^13.3.0",
     "@azure/event-hubs": "^5.12.2",
+    "@azure/eventgrid": "^5.9.0",
     "@azure/functions": "^4.6.0",
     "@azure/storage-blob": "^12.26.0",
     "node-fetch": "^3.3.2",

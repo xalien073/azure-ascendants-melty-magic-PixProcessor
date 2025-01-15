@@ -6,6 +6,8 @@
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "EVENT_HUB_CONNECTION": "Endpoint=sb://azure-ascendants.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=sAt69fGvqjzAKKNEvJBQPlKWbg4cHQXQS+AEhD9FeXU=",
     "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=vipernest;AccountKey=abNSYyuD+ioegb4JhOu7FMj1kMpsDdDgDUtTRbG9cFAUX5BucnoiqDIQaTnT8W15g/pwdf1NzZbB+AStm/xiSg==;EndpointSuffix=core.windows.net",
-    "TABLE_ACCOUNT_KEY":  "abNSYyuD+ioegb4JhOu7FMj1kMpsDdDgDUtTRbG9cFAUX5BucnoiqDIQaTnT8W15g/pwdf1NzZbB+AStm/xiSg=="
+    "TABLE_ACCOUNT_KEY": "abNSYyuD+ioegb4JhOu7FMj1kMpsDdDgDUtTRbG9cFAUX5BucnoiqDIQaTnT8W15g/pwdf1NzZbB+AStm/xiSg==",
+    "EVENT_GRID_TOPIC_ENDPOINT": "https://inventorytopic.westindia-1.eventgrid.azure.net/api/events",
+    "EVENT_GRID_TOPIC_KEY": "7XCvPV6h2AyO5NgLPa3GkftsPzlbqY05ZXtsI4tK2KiaUjFk2r1jJQQJ99BAAChTXb8XJ3w3AAABAZEG7W7x"
   }
 }
